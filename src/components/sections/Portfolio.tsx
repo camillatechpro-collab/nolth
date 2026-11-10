@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react'
 import { ArrowRight, Info } from 'lucide-react'
-import { projects } from '../../data/portfolio'
+import { featuredProjects, projects } from '../../data/portfolio'
 import type { ProjectType } from '../../data/services'
 import { Container } from '../ui/Container'
 import { SectionHeading } from '../ui/SectionHeading'
@@ -23,11 +23,13 @@ export function Portfolio({ onInterest }: { onInterest: (type: ProjectType) => v
           index="02"
           eyebrow="Portfólio"
           title="Projetos que saem do papel."
-          description="Um sistema real desenvolvido pela NOLTH, que você pode experimentar agora, e conceitos que mostram nossa abordagem em diferentes segmentos."
+          description="Sistemas reais desenvolvidos pela NOLTH, que você pode conhecer agora, e conceitos que mostram nossa abordagem em diferentes segmentos."
           align="center"
         />
 
-        <FeaturedProject />
+        {featuredProjects.map((fp, i) => (
+          <FeaturedProject key={fp.id} project={fp} reverse={i % 2 === 1} />
+        ))}
 
         <h3 className="mt-24 text-center font-display text-xl font-bold tracking-[0.08em] text-ice uppercase sm:text-2xl">Conceitos demonstrativos</h3>
 

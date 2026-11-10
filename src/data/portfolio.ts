@@ -55,6 +55,12 @@ export const projects: Project[] = [
   },
 ]
 
+export interface Screenshot {
+  src: string
+  label: string
+  alt: string
+}
+
 export interface FeaturedProject {
   id: string
   name: string
@@ -62,22 +68,62 @@ export interface FeaturedProject {
   description: string
   features: string[]
   stack: string[]
-  demoUrl: string
+  /** Endereço da demonstração interativa. Sem ele, o card mostra só as telas. */
+  demoUrl?: string
+  /** Endereço usado dentro do site (ex.: Streamlit com ?embed=true). Padrão: demoUrl. */
+  embedUrl?: string
+  repoUrl?: string
+  /** Prévia: o próprio sistema rodando reduzido, ou uma galeria de telas reais. */
+  preview: { type: 'live' } | { type: 'gallery'; images: Screenshot[] }
+  /** Texto curto abaixo dos botões. */
+  note: string
 }
 
-/** Sistema real desenvolvido pela NOLTH, com demonstração interativa (dados fictícios). */
-export const featuredProject: FeaturedProject = {
-  id: 'hoseg',
-  name: 'HOSeg',
-  tagline: 'Gestão de Ordens de Serviço para Saúde e Segurança do Trabalho',
-  description:
-    'Sistema web que acompanha cada ordem de serviço da venda à entrega dos documentos técnicos, com acesso controlado por perfil: cada setor vê e altera apenas o que é de sua responsabilidade.',
-  features: [
-    'Controle de acesso por perfil: Comercial, Técnico, Financeiro e Administrador',
-    'Fluxo da OS em 6 etapas, com o responsável de cada fase',
-    'Orçamentos, contratos e parcelas com controle de vencimentos',
-    'Notificações por setor e histórico completo de ações',
-  ],
-  stack: ['JavaScript', 'Tailwind CSS', 'RBAC'],
-  demoUrl: '/demos/hoseg/index.html',
-}
+/** Sistemas reais desenvolvidos pela NOLTH (demonstrações com dados fictícios). */
+export const featuredProjects: FeaturedProject[] = [
+  {
+    id: 'hoseg',
+    name: 'HOSeg',
+    tagline: 'Gestão de Ordens de Serviço para Saúde e Segurança do Trabalho',
+    description:
+      'Sistema web que acompanha cada ordem de serviço da venda à entrega dos documentos técnicos, com acesso controlado por perfil: cada setor vê e altera apenas o que é de sua responsabilidade.',
+    features: [
+      'Controle de acesso por perfil: Comercial, Técnico, Financeiro e Administrador',
+      'Fluxo da OS em 6 etapas, com o responsável de cada fase',
+      'Orçamentos, contratos e parcelas com controle de vencimentos',
+      'Notificações por setor e histórico completo de ações',
+    ],
+    stack: ['JavaScript', 'Tailwind CSS', 'RBAC'],
+    demoUrl: '/demos/hoseg/index.html',
+    preview: { type: 'live' },
+    note: 'Demonstração com dados fictícios. Na tela de entrada, use um dos acessos de demonstração para navegar por cada perfil.',
+  },
+  {
+    id: 'vencimentos',
+    name: 'Inteligência de Vencimentos',
+    tagline: 'Controle de vencimentos em Segurança do Trabalho',
+    description:
+      'Aplicação web que acompanha os vencimentos de treinamentos, exames (ASO), equipamentos, documentos e contratos de SST, mostrando o que está vencido, o que vence em breve e quem está pendente, com várias empresas e unidades, perfis de acesso e auditoria completa.',
+    features: [
+      'Painel com vencidos, a vencer, conformidade e gráficos por unidade e categoria',
+      'Perfil do colaborador com ASOs, treinamentos por NR e histórico de renovações',
+      'Pendências por cargo, lançamento em lote e relatórios em Excel',
+      'Perfis de acesso, CPF mascarado (LGPD), auditoria e testes automatizados',
+    ],
+    stack: ['Python', 'Streamlit', 'SQLAlchemy', 'Plotly'],
+    // Preencha após publicar no Streamlit Community Cloud (ver README):
+    // demoUrl: 'https://SEU-APP.streamlit.app',
+    // embedUrl: 'https://SEU-APP.streamlit.app/?embed=true',
+    repoUrl: 'https://github.com/camillatechpro-collab/controle-de-vencimentos-sso',
+    preview: {
+      type: 'gallery',
+      images: [
+        { src: '/portfolio/vencimentos/painel.webp', label: 'Painel', alt: 'Painel com indicadores de vencidos, a vencer, conformidade e gráficos' },
+        { src: '/portfolio/vencimentos/vencimentos.webp', label: 'Vencimentos', alt: 'Lista de vencimentos com status, dias restantes e filtros' },
+        { src: '/portfolio/vencimentos/pendencias.webp', label: 'Pendências', alt: 'Pendências e conformidade por cargo e colaborador' },
+        { src: '/portfolio/vencimentos/colaboradores.webp', label: 'Colaboradores', alt: 'Cadastro de colaboradores' },
+      ],
+    },
+    note: 'Telas reais do sistema com dados fictícios de demonstração.',
+  },
+]

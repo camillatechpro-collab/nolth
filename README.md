@@ -142,6 +142,17 @@ O portfólio destaca o **HOSeg**, sistema desenvolvido pela NOLTH, que o visitan
   "Demonstração NOLTH · dados fictícios" tem o botão **Restaurar dados** para voltar ao estado inicial.
 - O texto do card (descrição, funcionalidades, tecnologias) fica em `featuredProject`, em `src/data/portfolio.ts`.
 
+O **Inteligência de Vencimentos** (Python/Streamlit) aparece com uma galeria de telas reais
+(`public/portfolio/vencimentos/`) e o link para o código. Depois de publicá-lo no Streamlit Community Cloud
+(passo a passo no README do repositório `controle-de-vencimentos-sso`), preencha em `src/data/portfolio.ts`:
+
+```ts
+demoUrl: 'https://SEU-APP.streamlit.app',
+embedUrl: 'https://SEU-APP.streamlit.app/?embed=true',
+```
+
+O card passa a mostrar **Experimentar o sistema**, abrindo a demonstração dentro do site.
+
 **Para adicionar outro sistema:** coloque o HTML (ou o build) em `public/demos/<nome>/index.html`, use dados
 fictícios e aponte `demoUrl` para `/demos/<nome>/index.html`. Se o sistema estiver hospedado em outro endereço,
 basta usar a URL completa — desde que ele permita ser exibido dentro de outro site.
