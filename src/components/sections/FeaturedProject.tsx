@@ -78,6 +78,12 @@ export function FeaturedProject({ project: p, reverse = false }: { project: Proj
                 <ExternalLink className="h-4 w-4" aria-hidden="true" />
               </ButtonLink>
             )}
+            {p.extraLink && (
+              <ButtonLink href={p.extraLink.href} external variant="secondary">
+                {p.extraLink.label}
+                <ExternalLink className="h-4 w-4" aria-hidden="true" />
+              </ButtonLink>
+            )}
             {p.repoUrl && (
               <ButtonLink href={p.repoUrl} external variant="secondary">
                 <GithubIcon width={16} height={16} />

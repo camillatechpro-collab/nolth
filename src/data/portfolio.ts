@@ -73,6 +73,8 @@ export interface FeaturedProject {
   /** Endereço usado dentro do site (ex.: Streamlit com ?embed=true). Padrão: demoUrl. */
   embedUrl?: string
   repoUrl?: string
+  /** Link extra opcional (ex.: versão oficial publicada). */
+  extraLink?: { label: string; href: string }
   /** Prévia: o próprio sistema rodando reduzido, ou uma galeria de telas reais. */
   preview: { type: 'live' } | { type: 'gallery'; images: Screenshot[] }
   /** Texto curto abaixo dos botões. */
@@ -146,5 +148,24 @@ export const featuredProjects: FeaturedProject[] = [
     preview: { type: 'live' },
     viewerLabel: 'app em funcionamento',
     note: 'App completo e gratuito: use direto no navegador ou instale no celular. Os registros ficam salvos só no seu aparelho.',
+  },
+  {
+    id: 'ficha-epi',
+    name: 'Ficha de EPI',
+    tagline: 'Controle de entrega de EPI conforme a NR-06',
+    description:
+      'Sistema para gerar e imprimir as fichas de entrega de EPI, com termo de responsabilidade e assinatura, e acompanhar trocas por vida útil, kits por função, estoque e validade dos CAs. Na versão oficial, cada empresa tem login, equipe e dados sincronizados na nuvem.',
+    features: [
+      'Ficha NR-06 pronta para imprimir ou salvar em PDF, com termo e assinaturas',
+      'Painel de trocas atrasadas, kits pendentes, estoque baixo e CAs vencidos',
+      'Catálogo de EPIs com base CAEPI, vida útil, estoque e kit por função',
+      'Login por empresa, funcionamento offline e histórico de alterações na nuvem',
+    ],
+    stack: ['JavaScript', 'PWA', 'Supabase'],
+    demoUrl: '/demos/ficha-epi/index.html',
+    repoUrl: 'https://github.com/camillatechpro-collab/ficha-de-epi',
+    extraLink: { label: 'App oficial', href: 'https://camillatechpro-collab.github.io/ficha-de-epi/' },
+    preview: { type: 'live' },
+    note: 'Demonstração sem login, com dados fictícios salvos só no seu navegador. O app oficial tem login e nuvem.',
   },
 ]
