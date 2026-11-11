@@ -115,9 +115,8 @@ export const featuredProjects: FeaturedProject[] = [
       'Perfis de acesso, CPF mascarado (LGPD), auditoria e testes automatizados',
     ],
     stack: ['Python', 'Streamlit', 'SQLAlchemy', 'Plotly'],
-    // Preencha após publicar no Streamlit Community Cloud (ver README):
-    // demoUrl: 'https://SEU-APP.streamlit.app',
-    // embedUrl: 'https://SEU-APP.streamlit.app/?embed=true',
+    demoUrl: 'https://controle-de-vencimentos-app-dhjc4hyrn9dhdkcrmcd3ze.streamlit.app/',
+    embedUrl: 'https://controle-de-vencimentos-app-dhjc4hyrn9dhdkcrmcd3ze.streamlit.app/?embed=true&embed_options=dark_theme',
     repoUrl: 'https://github.com/camillatechpro-collab/controle-de-vencimentos-sso',
     preview: {
       type: 'gallery',
@@ -128,7 +127,7 @@ export const featuredProjects: FeaturedProject[] = [
         { src: '/portfolio/vencimentos/colaboradores.webp', label: 'Colaboradores', alt: 'Cadastro de colaboradores' },
       ],
     },
-    note: 'Telas reais do sistema com dados fictícios de demonstração.',
+    note: 'Demonstração ao vivo com dados fictícios: clique em "Entrar na demonstração". Se o app estiver em repouso, ele volta em alguns segundos.',
   },
   {
     id: 'dds',

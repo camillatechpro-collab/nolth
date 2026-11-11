@@ -1,5 +1,5 @@
-import { useState, type ReactNode } from 'react'
-import { BadgeCheck, Check, ExternalLink, Maximize2, MousePointerClick, Play } from 'lucide-react'
+import { useEffect, useState, type ReactNode } from 'react'
+import { BadgeCheck, Check, ExternalLink, LoaderCircle, Maximize2, MousePointerClick, Play } from 'lucide-react'
 import type { FeaturedProject as Project } from '../../data/portfolio'
 import { Reveal } from '../ui/Reveal'
 import { Button, ButtonLink } from '../ui/Button'
@@ -176,7 +176,7 @@ export function FeaturedProject({ project: p, reverse = false }: { project: Proj
         externalUrl={viewer?.kind === 'image' ? images[viewer.index].src : p.demoUrl}
       >
         {viewer?.kind === 'demo' && embed && (
-          <iframe src={embed} title={`Sistema ${p.name} em funcionamento`} className="w-full flex-1 bg-white" />
+          <DemoFrame src={embed} title={`Sistema ${p.name} em funcionamento`} externo={/^https?:/.test(embed)} />
         )}
         {viewer?.kind === 'image' && (
           <>
@@ -224,5 +224,36 @@ function HoverCta({ icon, label }: { icon: ReactNode; label: string }) {
         {label}
       </span>
     </span>
+  )
+}
+
+/** Sistema dentro do visualizador, com aviso de carregamento (apps hospedados fora, como Streamlit, podem levar alguns segundos). */
+function DemoFrame({ src, title, externo }: { src: string; title: string; externo: boolean }) {
+  const [pronto, setPronto] = useState(false)
+  const [demorando, setDemorando] = useState(false)
+  useEffect(() => {
+    const t = window.setTimeout(() => setDemorando(true), 8000)
+    return () => window.clearTimeout(t)
+  }, [])
+  return (
+    <>
+      <iframe
+        src={src}
+        title={title}
+        onLoad={() => window.setTimeout(() => setPronto(true), externo ? 2500 : 0)}
+        className={externo ? 'w-full flex-1 bg-ink' : 'w-full flex-1 bg-white'}
+      />
+      {!pronto && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-ink-900 px-6 text-center" role="status">
+          <LoaderCircle className="h-9 w-9 animate-spin text-cyan" aria-hidden="true" />
+          <p className="font-display text-lg font-semibold text-ice">Carregando o sistema…</p>
+          <p className="max-w-sm text-sm text-mist">
+            {demorando
+              ? 'O servidor da demonstração estava em repouso e está sendo iniciado. Isso pode levar até 30 segundos.'
+              : 'Só um instante.'}
+          </p>
+        </div>
+      )}
+    </>
   )
 }
