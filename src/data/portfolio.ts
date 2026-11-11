@@ -77,6 +77,8 @@ export interface FeaturedProject {
   preview: { type: 'live' } | { type: 'gallery'; images: Screenshot[] }
   /** Texto curto abaixo dos botões. */
   note: string
+  /** Rótulo no topo do visualizador. Padrão: "demonstração · dados fictícios". */
+  viewerLabel?: string
 }
 
 /** Sistemas reais desenvolvidos pela NOLTH (demonstrações com dados fictícios). */
@@ -125,5 +127,24 @@ export const featuredProjects: FeaturedProject[] = [
       ],
     },
     note: 'Telas reais do sistema com dados fictícios de demonstração.',
+  },
+  {
+    id: 'dds',
+    name: 'DDS Diário',
+    tagline: 'Um Diálogo Diário de Segurança pronto para cada dia',
+    description:
+      'Aplicativo web para técnicos e líderes de obra conduzirem o DDS: sugere o tema do dia de acordo com as campanhas do mês, traz o texto para leitura, um caso para reflexão e perguntas para a turma, e registra cada DDS realizado.',
+    features: [
+      'Biblioteca com cerca de 150 temas, busca por tema ou NR e favoritos',
+      'Tema do dia alinhado às campanhas do mês (Abril Verde, Maio Amarelo…)',
+      'Impressão ou PDF com lista de presença e leitura em voz alta',
+      'Histórico com empresa e CNPJ, exportação em CSV e funcionamento offline',
+    ],
+    stack: ['JavaScript', 'PWA', 'Offline'],
+    demoUrl: '/demos/dds/index.html',
+    repoUrl: 'https://github.com/camillatechpro-collab/dds',
+    preview: { type: 'live' },
+    viewerLabel: 'app em funcionamento',
+    note: 'App completo e gratuito: use direto no navegador ou instale no celular. Os registros ficam salvos só no seu aparelho.',
   },
 ]

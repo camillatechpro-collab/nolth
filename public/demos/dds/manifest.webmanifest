@@ -1,0 +1,14 @@
+{
+  "name": "DDS Diário — Diálogo Diário de Segurança",
+  "short_name": "DDS Diário",
+  "description": "Um DDS pronto para cada dia, com lista de presença e histórico.",
+  "lang": "pt-BR",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f5f7",
+  "theme_color": "#1f2a37",
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

@@ -166,7 +166,7 @@ export function FeaturedProject({ project: p, reverse = false }: { project: Proj
         open={viewer !== null}
         onClose={() => setViewer(null)}
         title={p.name}
-        subtitle={viewer?.kind === 'image' ? images[viewer.index].label : 'demonstração · dados fictícios'}
+        subtitle={viewer?.kind === 'image' ? images[viewer.index].label : (p.viewerLabel ?? 'demonstração · dados fictícios')}
         externalUrl={viewer?.kind === 'image' ? images[viewer.index].src : p.demoUrl}
       >
         {viewer?.kind === 'demo' && embed && (

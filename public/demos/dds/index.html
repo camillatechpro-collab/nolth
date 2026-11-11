@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>DDS Diário — Diálogo Diário de Segurança</title>
+  <meta name="description" content="Um DDS pronto para cada dia: temas de segurança do trabalho para leitura no canteiro, lista de presença e histórico.">
+  <meta name="theme-color" content="#1f2a37">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topo">
+    <a href="#/" class="marca">
+      <img src="icons/icon.svg" alt="" width="34" height="34">
+      <span>DDS <b>Diário</b></span>
+    </a>
+    <nav class="menu" aria-label="Principal">
+      <a href="#/" data-rota="hoje"><span class="ic" aria-hidden="true">📅</span><span>Hoje</span></a>
+      <a href="#/biblioteca" data-rota="biblioteca"><span class="ic" aria-hidden="true">📚</span><span>Biblioteca</span></a>
+      <a href="#/meus" data-rota="meus"><span class="ic" aria-hidden="true">✍️</span><span>Meus DDS</span></a>
+      <a href="#/historico" data-rota="historico"><span class="ic" aria-hidden="true">🗂️</span><span>Histórico</span></a>
+      <a href="#/ajustes" data-rota="ajustes"><span class="ic" aria-hidden="true">⚙️</span><span>Ajustes</span></a>
+    </nav>
+  </header>
+
+  <main id="app" tabindex="-1"></main>
+
+  <footer class="rodape">
+    Conteúdo de apoio para o DDS. Adapte à realidade da sua obra e valide com o profissional de SST responsável.
+  </footer>
+
+  <dialog id="dlg-realizado">
+    <form method="dialog" class="dlg">
+      <h2>Registrar DDS realizado</h2>
+      <p class="dlg-tema"></p>
+      <label>Data <input type="date" name="data" required></label>
+      <label>Empresa <input type="text" name="empresa" maxlength="120" list="lista-empresas" autocomplete="organization" placeholder="Razão social ou nome da empresa"></label>
+      <datalist id="lista-empresas"></datalist>
+      <label>CNPJ <span class="dica">— opcional</span>
+        <input type="text" name="cnpj" maxlength="18" inputmode="text" autocomplete="off" placeholder="00.000.000/0000-00" spellcheck="false" style="text-transform:uppercase">
+      </label>
+      <label>Obra / frente de serviço <input type="text" name="obra" maxlength="120"></label>
+      <label>Nº de participantes <input type="number" name="participantes" min="0" max="999" inputmode="numeric"></label>
+      <label>Observações <textarea name="obs" rows="2" maxlength="500" placeholder="Dúvidas da turma, pontos levantados..."></textarea></label>
+      <div class="dlg-botoes">
+        <button value="cancelar" class="btn sec" formnovalidate>Cancelar</button>
+        <button value="ok" class="btn">Registrar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+  <div id="impressao" aria-hidden="true"></div>
+
+  <script src="data/calendario.js"></script>
+  <script src="data/dds-1.js"></script>
+  <script src="data/dds-2.js"></script>
+  <script src="data/dds-3.js"></script>
+  <script src="data/dds-4.js"></script>
+  <script src="data/dds-5.js"></script>
+  <script src="data/dds-6.js"></script>
+  <script src="data/dds-7.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
